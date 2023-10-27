@@ -41,7 +41,9 @@ namespace Modeling.Windows
             allConstruct = MainWindow.allConstruct;
             generateFunc = MainWindow.generateFunc;
 
-           
+            if (generateFunc.isAssembly && generateFunc.selectedMaterial != null)
+                cb_assembly_Click(cb_assembly, null);
+
         }
 
         private void FrmMain_ContentRendered(object sender, EventArgs e)
@@ -128,8 +130,11 @@ namespace Modeling.Windows
                     temp += enteredSymbols[i];
                 }
             }
-
             tb_stepMissing.Text = temp;
+
+            if (temp == string.Empty)
+                return;
+
             generateFunc.stepMissing = double.Parse(temp);
         }
 
@@ -145,8 +150,11 @@ namespace Modeling.Windows
                     temp += enteredSymbols[i];
                 }
             }
-
             tb_countSpar.Text = temp;
+
+            if (temp == string.Empty)
+                return;
+
             generateFunc.countSpar = int.Parse(temp);
         }
 

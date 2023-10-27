@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Modeling.Windows"
         mc:Ignorable="d"
-        Title="Создание лонжерона" Height="675" Width="500" ResizeMode="NoResize" Icon="/Windows/logo.png" >
+        Title="Создание лонжерона" Height="675" Width="500" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen" Icon="/Windows/logo.png" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="125"/>
@@ -18,30 +18,40 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Content="Материал" Height="25" Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="125"  Margin=" -30 -30 0 0" Visibility="Visible"/>
-            <TextBox x:Name="tb_selectedMaterial" Grid.Column="1" Grid.Row="0" Height="25" Width="125"  Margin="-30 20 0 0" VerticalContentAlignment="Center"  IsReadOnly="True"/>
-            <Button Content="🔍"  x:Name="btn_search" Grid.Column="1" Height="30" Width="30"  Margin="140 20 0 0" Click="btn_search_Click"/>
-            <ComboBox x:Name="cmb_typeSpar" Grid.Column="0" Grid.Row="0" Height="25" Width="160" Margin="-30 20 0 0" HorizontalAlignment="Center" SelectedIndex="0">
-                <ComboBoxItem Tag="0">
-                    <TextBlock Text="Н-образный цельный" ></TextBlock>
-                </ComboBoxItem>
-                <ComboBoxItem Tag="1">
-                    <TextBlock Text="Н-образный" ></TextBlock>
-                </ComboBoxItem>
-            </ComboBox>
 
-            <CheckBox  x:Name="cb_assembly" Content="Режим сборки" Grid.Row="1" Grid.Column="0" Margin="-120 10 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="cb_assembly_Click"/>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            <Label x:Name="lb_countSpar" Content="Кол-во лонжеронов" Grid.Row="1" Height="30" Width="125" Grid.Column="0" Margin="121 -45 0 0" Visibility="Collapsed"/>
-            <TextBox x:Name="tb_countSpar" Grid.Row="1" Grid.Column="0" Height="25" Width="115" Margin="125 10 0 0" Visibility="Collapsed" HorizontalContentAlignment="Center" TextChanged="tb_countSpar_TextChanged"/>
+                <ComboBox x:Name="cmb_typeSpar" Grid.Column="0" Grid.Row="0" Height="25" Width="160" Margin="0 0 0 0" HorizontalAlignment="Center" SelectedIndex="0">
+                    <ComboBoxItem Tag="0">
+                        <TextBlock Text="Н-образный цельный" ></TextBlock>
+                    </ComboBoxItem>
+                    <ComboBoxItem Tag="1">
+                        <TextBlock Text="Н-образный" ></TextBlock>
+                    </ComboBoxItem>
+                </ComboBox>
+                <Label Content="Материал" Height="25"  Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="158" Margin="0 0 0 30" Visibility="Visible"/>
+                <TextBox x:Name="tb_selectedMaterial"  Grid.Row="1" Height="25" Width="125"  Margin="0 20 34 0" VerticalContentAlignment="Center"  IsReadOnly="True"/>
+                <Button Content="🔍"  x:Name="btn_search"  Grid.Row="1" Height="25" Width="25"  Margin="135 20 0 0" Click="btn_search_Click" BorderBrush="#FFABADB3"/>
+            </Grid>
 
-            <Label x:Name="lb_stepMissing" Content="Шаг отсутпа" Grid.Row="1" Height="30" Width="125" Grid.Column="1" Margin="-30 -45 0 0" Visibility="Collapsed"/>
-            <TextBox x:Name="tb_stepMissing" Grid.Row="1" Grid.Column="1" Height="25" Width="115" Margin="-30 10 0 0" Visibility="Collapsed" HorizontalContentAlignment="Center" TextChanged="tb_stepMissing_TextChanged"/>
+
+
+
+            <CheckBox  x:Name="cb_assembly" Content="Режим сборки"  Grid.Column="1" Margin="130 15 0 0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="cb_assembly_Click" BorderBrush="#FFABADB3"/>
+
+            <Label x:Name="lb_countSpar" Content="Кол-во лонжеронов"  Grid.Column="1" Height="25" Width="125"  Margin="125 0 0 25" Visibility="Collapsed" HorizontalContentAlignment="Left"/>
+            <TextBox x:Name="tb_countSpar"  Grid.Column="1" Height="25" Width="115" Margin="0 0 125 24" Visibility="Collapsed" VerticalContentAlignment="Center" TextChanged="tb_countSpar_TextChanged"/>
+
+            <Label x:Name="lb_stepMissing" Content="Шаг отсутпа"  Height="25" Width="125" Grid.Column="1" Margin="125 82 0 18" Visibility="Collapsed"  HorizontalContentAlignment="Left"/>
+            <TextBox x:Name="tb_stepMissing"  Grid.Column="1" Height="25" Width="115" Margin="0 64 125 0" Visibility="Collapsed" VerticalContentAlignment="Center" TextChanged="tb_stepMissing_TextChanged"/>
         </Grid>
 
-   
+
 
         <Frame x:Name="FrmMain" Grid.Row="1" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2" ContentRendered="FrmMain_ContentRendered"/>
     </Grid>

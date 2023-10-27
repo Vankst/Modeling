@@ -72,14 +72,14 @@ namespace Modeling.generationFunctions
 
         public void clearDirectory()
         {
-            string command = "taskkill /im KOMPAS.exe";
+            string command = "taskkill /PID KOMPAS.exe";
 
             var proc = new ProcessStartInfo()
             {
                 UseShellExecute = true,
                 WorkingDirectory = @"C:\Windows\System32",
                 FileName = @"C:\Windows\System32\cmd.exe",
-                Arguments = "/c" +  command,
+                Arguments = "/c " +  command,
                 WindowStyle = ProcessWindowStyle.Hidden
             };
 
@@ -98,8 +98,6 @@ namespace Modeling.generationFunctions
             };
 
             Process.Start(proc);
-
-
         }
 
         private void checkDirectory(string path)
@@ -108,15 +106,15 @@ namespace Modeling.generationFunctions
                 Directory.CreateDirectory(path);
         }
 
-        public void assemblyGetNameFiles()
+        public void buildMode()
         {
-            if (!isAssembly)
-                kompas.Visible = true;
-            else
+            if(isAssembly)
             {
                 try
                 {
-                    nameFiles = Directory.GetFiles("NoEditor/3dDocuments/Temp/");
+                    string path = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                    path = path.Remove(path.Length - 12) + @"NoEditor\3dDocuments\Temp\";
+                    nameFiles = Directory.GetFiles(path).Where(name => name.Contains("ВременныйЛонжерон")).ToArray();
 
                     kompas.ActivateControllerAPI();
 
@@ -139,18 +137,14 @@ namespace Modeling.generationFunctions
                             doc3D.ComponentPositioner().Finish();
                         }
                     }
-
-                    kompas.Visible = true;
-
                 }
                 catch(Exception ex)
                 {
                    loggingActions loggingActions = new loggingActions();
                     loggingActions.loggingFunction(ex.Message, true);
                 }
-               
             }
-
+            kompas.Visible = true;
         }
     }
 }

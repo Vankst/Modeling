@@ -92,6 +92,13 @@ namespace Modeling.Windows
                 generateSparWindow.Show();
                 this.Close();
             }
+            else
+            {
+                generateSparWindow generateSparWindow = new generateSparWindow();
+                generateSparWindow.Show();
+                this.Close();
+            }
+            
         }
     }
 }

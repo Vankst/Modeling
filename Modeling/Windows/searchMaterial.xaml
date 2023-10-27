@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Modeling.Windows"
         mc:Ignorable="d"
-        Title="Поиск материалов" Height="200" Width="300" ResizeMode="NoResize" Icon="/Windows/logo.png">
+        Title="Поиск материалов" Height="200" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/Windows/logo.png">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>

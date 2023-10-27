@@ -205,7 +205,7 @@ namespace Modeling.Pages
                     
                     doc3D.SaveAs(generateFunc.returnPath(generateFunc.isAssembly));
 
-                    generateFunc.assemblyGetNameFiles();
+                    generateFunc.buildMode();
                 }
 
             } catch (Exception e)
