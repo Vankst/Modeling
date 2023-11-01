@@ -10,7 +10,7 @@ namespace Modeling.Constructors
     internal class allConstruct
     {
 
-               public bool resolutionSupported { get; set; }
+        public bool resolutionSupported { get; set; }
         public string machineName { get; set; }
         public string userName { get; set; }
         public int screenWidth { get; set; }

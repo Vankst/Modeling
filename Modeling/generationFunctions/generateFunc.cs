@@ -25,9 +25,10 @@ namespace Modeling.generationFunctions
         public int countSpar { get; set; }
         public double stepMissing { get; set; }
 
-
         public static string[] nameFiles;
 
+
+        private string assemblyPath;
 
         public ksDocument3D createDocuments(KompasObject kompas, bool isAssembly)
         {
@@ -72,25 +73,23 @@ namespace Modeling.generationFunctions
 
         public void clearDirectory()
         {
-            string command = "taskkill /PID KOMPAS.exe";
+            cmdCommand("taskkill /PID KOMPAS.exe", false);
+
+            string path = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string tempPath = path.Remove(path.Length - 12) + @"NoEditor\3dDocuments\Temp\";
+
+            cmdCommand("rd /s /q " + tempPath, false);
+
+            assemblyPath = path.Remove(path.Length - 12) + @"NoEditor\3dDocuments\Assembly\";
+
+            cmdCommand("rd /s /q " + assemblyPath, false);
+        }
+
+        public void cmdCommand(string command, bool shellExecute){
 
             var proc = new ProcessStartInfo()
             {
-                UseShellExecute = true,
-                WorkingDirectory = @"C:\Windows\System32",
-                FileName = @"C:\Windows\System32\cmd.exe",
-                Arguments = "/c " +  command,
-                WindowStyle = ProcessWindowStyle.Hidden
-            };
-
-            Process.Start(proc);
-
-            string path = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            path = path.Remove(path.Length - 12) + @"NoEditor\3dDocuments\Temp\";
-
-            command = "rd /s /q " + path;
-            proc = new ProcessStartInfo() {
-                UseShellExecute = false,
+                UseShellExecute = shellExecute,
                 WorkingDirectory = @"C:\Windows\System32",
                 FileName = @"C:\Windows\System32\cmd.exe",
                 Arguments = "/c " + command,
@@ -99,6 +98,7 @@ namespace Modeling.generationFunctions
 
             Process.Start(proc);
         }
+
 
         private void checkDirectory(string path)
         {
@@ -137,6 +137,9 @@ namespace Modeling.generationFunctions
                             doc3D.ComponentPositioner().Finish();
                         }
                     }
+
+                    checkDirectory(assemblyPath);
+                    doc3D.SaveAs(assemblyPath + "assembly.a3d");
                 }
                 catch(Exception ex)
                 {

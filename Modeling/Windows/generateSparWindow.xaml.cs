@@ -63,60 +63,6 @@ namespace Modeling.Windows
             searchMaterial.Show();
             this.Close();
         }
-
-  
-
-       /* private void btn_create_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (kompas == null)
-                {
-                    kompas = generateFunc.kompas;
-                }
-                if (kompas != null)
-                {
-                    kompas.Visible = false;
-                    kompas.ActivateControllerAPI();
-
-                    doc3D = generateFunc.createDocuments(kompas, true);
-
-                    ksPart part = (ksPart)doc3D.GetPart((short)Part_Type.pTop_Part);
-
-                    part.SetMaterial(generateFunc.selectedMaterial, generateFunc.selectedMaterialDensity);
-
-                    kompas.Visible = true;
-
-                    doc3D.SetPartFromFile(@"G:\Modeling\Modeling\Modeling\bin\Debug\NoEditor\Детал2ыь.m3d", part, true);
-
-                    doc3D.ComponentPositioner().SetDragPoint(0, 0, 0);
-                    doc3D.ComponentPositioner().SetPlane(part.GetDefaultEntity((short)Obj3dType.o3d_planeXOY));
-                    if (doc3D.ComponentPositioner().Prepare((part)part, (short)Positioner_Type.pnMove) == 0)
-                    {
-                        if (doc3D.ComponentPositioner().MoveComponent(1000, 0, 0) == true)
-                            MessageBox.Show("Подвинул00");
-                        doc3D.ComponentPositioner().Finish();
-                    }
-
-
-
-                    *//*
-                     doc3D.ComponentPositioner().Prepare(part, (short)Positioner_Type.pnMove);
-                     doc3D.ComponentPositioner().SetPlane((short)Obj3dType.o3d_planeXOZ);                
-                     doc3D.ComponentPositioner().SetDragPoint(0, 0, 0);
-                     doc3D.ComponentPositioner().MoveComponent(100, 0, 0);
-                     doc3D.ComponentPositioner().Finish();*//*
-
-
-                }
-            }
-            catch (Exception ex)
-            {
-                loggingActions.loggingFunction(ex.Message, true);
-            }
-        }*/
-
-
     
         private void tb_stepMissing_TextChanged(object sender, TextChangedEventArgs e)
         {
