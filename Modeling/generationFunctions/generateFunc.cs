@@ -140,6 +140,7 @@ namespace Modeling.generationFunctions
 
                     checkDirectory(assemblyPath);
                     doc3D.SaveAs(assemblyPath + "assembly.a3d");
+                   
                 }
                 catch(Exception ex)
                 {
@@ -148,6 +149,8 @@ namespace Modeling.generationFunctions
                 }
             }
             kompas.Visible = true;
+
+            kompas.ksMessage($"Сборка сохранена по пути - {assemblyPath}assembly.a3d\nЕсли сборка необходима дальнейшей работы, то скопируйте ее в другую директорию.");
         }
     }
 }

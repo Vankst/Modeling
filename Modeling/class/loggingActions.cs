@@ -19,7 +19,6 @@ namespace Modeling.Class
 
         public void loggingFunction(string text, bool sendTgMessage)
         {
-            textMessage = text;
             allConstruct allConstruct = MainWindow.allConstruct;
             generateFunc generateFunc = MainWindow.generateFunc;
             DateTime now = DateTime.Now;
@@ -40,10 +39,14 @@ namespace Modeling.Class
             // Путь к файлу, который нужно создать внутри директории
             string filePath = Path.Combine(directoryPath, "logs.log");
 
-            string parametres = textMessage.Contains("Ошибка") || textMessage.Contains("ошибка") || textMessage.Contains("вне") ? "[ERROR]" : "[SUCCESS]";
+            string parametres = text.Contains("Ошибка") || text.Contains("ошибка") || text.Contains("вне") ? "[ERROR]" : "[SUCCESS]";
             parametres += generateFunc.isAssembly ? " [ASSEMBLY]" : "";
 
-            File.AppendAllText(filePath, $"{parametres} {formattedDateTime} [{allConstruct.machineName}] [{allConstruct.userName}] " + textMessage.Replace("\n", "") + Environment.NewLine);
+            string assemblyParametres = generateFunc.isAssembly ? $"; количество лонжеронов = {generateFunc.countSpar}, шаг отступа  = {generateFunc.stepMissing}" : "";
+
+            textMessage = $"{parametres} {formattedDateTime} [{allConstruct.machineName}] [{allConstruct.userName}] " + text.Replace("\n", "") + assemblyParametres;
+
+            File.AppendAllText(filePath, textMessage + Environment.NewLine);
             if(sendTgMessage)
                 sendMessage();
         }
