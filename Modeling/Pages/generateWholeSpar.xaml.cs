@@ -203,7 +203,7 @@ namespace Modeling.Pages
                     loggingActions.loggingFunction($"Успешная генерация Н-образного цельного лонжерона с параметрами, материал = {generateFunc.selectedMaterial}; выдавливание = {extraction}; ширина верхней паралелли = {sparUpperParallel}; " +
                         $"ширина нижней паралелли = {sparLowerParallel}; внутренняя ширина = {sparInnerWidth}; высота верхнего пояса = {sparUpperHeight}; высота нижнего пояса = {sparLowerHeight}; высота лонжерона = {sparHeight}", false);
                     
-                    doc3D.SaveAs(generateFunc.returnPath(generateFunc.isAssembly));
+                    doc3D.SaveAs(generateFunc.returnPath(generateFunc.isAssembly ? 0 : 1));
 
                     generateFunc.buildMode();
                 }

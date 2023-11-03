@@ -27,6 +27,8 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
+
+        <Label Content="Поиск" Grid.Column="0" Margin=" 0 0 75 75" Height="25" Width="75"/>
         <TextBox x:Name="tb_searchMaterial" Width="150" Height="20" Margin="0 0 0 35" Grid.Column="0" TextChanged="tb_searchMaterial_TextChanged"></TextBox>
         <ComboBox x:Name="cmb_material" Width="150" Height="20" Margin="0 35 0 0" Grid.Column="0" SelectionChanged="cmb_material_SelectionChanged"></ComboBox>
 

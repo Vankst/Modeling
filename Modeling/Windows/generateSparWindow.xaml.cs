@@ -41,8 +41,16 @@ namespace Modeling.Windows
             allConstruct = MainWindow.allConstruct;
             generateFunc = MainWindow.generateFunc;
 
-            if (generateFunc.isAssembly && generateFunc.selectedMaterial != null)
-                cb_assembly_Click(cb_assembly, null);
+            if (generateFunc.isAssembly)
+            {
+                cb_assembly.IsChecked = true;
+                tb_countSpar.Text = generateFunc.countSpar.ToString();
+                tb_stepMissing.Text = generateFunc.stepMissing.ToString();
+                tb_countSpar.Visibility = Visibility.Visible;
+                lb_countSpar.Visibility = Visibility.Visible;
+                tb_stepMissing.Visibility = Visibility.Visible;
+                lb_stepMissing.Visibility = Visibility.Visible;
+            }
 
         }
 
@@ -106,6 +114,7 @@ namespace Modeling.Windows
 
         private void cb_assembly_Click(object sender, RoutedEventArgs e)
         {
+
             if (generateFunc.isAssembly)
             {
                 tb_countSpar.Visibility = Visibility.Collapsed;
@@ -116,6 +125,8 @@ namespace Modeling.Windows
             }
            else
             {
+                tb_countSpar.Text = generateFunc.countSpar.ToString();
+                tb_stepMissing.Text = generateFunc.stepMissing.ToString();
                 tb_countSpar.Visibility = Visibility.Visible;
                 lb_countSpar.Visibility = Visibility.Visible;
                 tb_stepMissing.Visibility = Visibility.Visible;

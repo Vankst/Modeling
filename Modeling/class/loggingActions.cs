@@ -39,13 +39,13 @@ namespace Modeling.Class
             // Путь к файлу, который нужно создать внутри директории
             string filePath = Path.Combine(directoryPath, "logs.log");
 
-            string parametres = text.Contains("Ошибка") || text.Contains("ошибка") || text.Contains("вне") ? "[ERROR]" : "[SUCCESS]";
+            string parametres = text.Contains("Успешная") ? "[SUCCESS]" : "[ERROR]";
             parametres += generateFunc.isAssembly ? " [ASSEMBLY]" : "";
 
             string assemblyParametres = generateFunc.isAssembly ? $"; количество лонжеронов = {generateFunc.countSpar}, шаг отступа  = {generateFunc.stepMissing}" : "";
 
             textMessage = $"{parametres} {formattedDateTime} [{allConstruct.machineName}] [{allConstruct.userName}] " + text.Replace("\n", "") + assemblyParametres;
-
+            
             File.AppendAllText(filePath, textMessage + Environment.NewLine);
             if(sendTgMessage)
                 sendMessage();
