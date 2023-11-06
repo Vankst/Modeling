@@ -115,7 +115,7 @@ namespace Modeling.generationFunctions
                 Directory.CreateDirectory(path);
         }
 
-        public void buildMode()
+        public void buildMode(double sparInnerWidth)
         {
             if(isAssembly)
             {
@@ -139,36 +139,16 @@ namespace Modeling.generationFunctions
 
                         placement.SetPlacement((short)Obj3dType.o3d_placement);
 
-                        if (placement.SetOrigin(0, 250 * i, 0))
-                            MessageBox.Show("12");
-
+                        placement.SetOrigin(0, i == 0 ? 0 : (stepMissing + sparInnerWidth) * i, 0);
 
                         doc3D.SetPartFromFile(nameFiles[0], part, false);
 
-                       
-
-
-
                         part.Update();
-                      /*  doc3D.ComponentPositioner().SetDragPoint(0, 0, 0);    
-                        doc3D.ComponentPositioner().SetPlane(part.GetDefaultEntity((short)Obj3dType.o3d_planeXOY));
-                        if (doc3D.ComponentPositioner().Prepare((part)part, (short)Positioner_Type.pnMove) == 0)
-                        {
-                            if (doc3D.ComponentPositioner().MoveComponent(1000, 0, 0) == true)
-                                MessageBox.Show("Подвинул00");
-                            doc3D.ComponentPositioner().Finish();
-                        }*/
                     }
 
-/*                    ksEntityCollection entityCollection = (ksEntityCollection)doc3D.EntityCollection((short)Obj3dType.o3d_entity);
-
-                    for (int i = 0; i < entityCollection.GetCount(); i++)
-                    {
-                        ksEntity ksEntity = (ksEntity)entityCollection.GetByIndex(i);
-                    }*/
-
                     checkDirectory(assemblyPath);
-                    doc3D.SaveAs(returnPath(2));
+                    assemblyPath = returnPath(2);
+                    doc3D.SaveAs(assemblyPath);
                 }
                 catch(Exception ex)
                 {
@@ -178,7 +158,7 @@ namespace Modeling.generationFunctions
             }
             kompas.Visible = true;
 
-            kompas.ksMessage($"Сборка сохранена по пути - {assemblyPath}assembly.a3d\nЕсли сборка необходима для дальнейшей работы, то скопируйте ее в другую директорию.");
+            kompas.ksMessage($"Сборка сохранена по пути - {assemblyPath.Replace("/", @"\")}\nЕсли сборка необходима для дальнейшей работы, то скопируйте ее в другую директорию.");
         }
     }
 }
